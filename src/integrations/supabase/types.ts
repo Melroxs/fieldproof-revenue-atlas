@@ -122,6 +122,19 @@ export type Database = {
         }
         Returns: boolean
       }
+      pilot_interest_submit: {
+        Args: {
+          p_full_name: string
+          p_email: string
+          p_company_name: string
+          p_role: string
+          p_website?: string | null
+          p_company_size?: string | null
+          p_interest_area?: string | null
+          p_comments?: string | null
+        }
+        Returns: Json
+      }
     }
     Enums: {
       app_role: "admin"
