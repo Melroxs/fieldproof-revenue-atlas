@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "d5f17731-98d5-4b14-b91d-5be375c1bf27",
+  "asset_id": "1b808d85-8c1e-46ac-8908-8de089e86b04",
   "project_id": "0fc7f341-36ee-4220-99ba-7d08a05698c6",
-  "url": "/__l5e/assets-v1/d5f17731-98d5-4b14-b91d-5be375c1bf27/insurance_restoration_claim.jpg",
-  "r2_key": "a/v1/0fc7f341-36ee-4220-99ba-7d08a05698c6/d5f17731-98d5-4b14-b91d-5be375c1bf27/insurance_restoration_claim.jpg",
-  "original_filename": "insurance_restoration_claim.jpg",
-  "size": 914612,
+  "url": "/__l5e/assets-v1/1b808d85-8c1e-46ac-8908-8de089e86b04/claim-journey.jpg",
+  "r2_key": "a/v1/0fc7f341-36ee-4220-99ba-7d08a05698c6/1b808d85-8c1e-46ac-8908-8de089e86b04/claim-journey.jpg",
+  "original_filename": "claim-journey.jpg",
+  "size": 893620,
   "content_type": "image/jpeg",
-  "created_at": "2026-10-21T14:11:35Z"
+  "created_at": "2026-10-21T14:12:05Z"
 }
