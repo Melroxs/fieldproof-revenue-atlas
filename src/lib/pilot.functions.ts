@@ -5,13 +5,13 @@ import { computeMetrics, evaluateGates, type EventRow } from "./gates";
 
 export const applicationSchema = z.object({
   full_name: z.string().trim().min(2, "Enter your full name").max(100),
-  email: z.string().trim().email("Enter a valid business email").max(255),
-  company: z.string().trim().min(2, "Enter your company name").max(150),
-  website: z.string().trim().max(255).optional().or(z.literal("")),
+  email: z.string().trim().email("Enter a valid business email").max(254),
+  company: z.string().trim().min(2, "Enter your company name").max(160),
+  website: z.string().trim().max(200).optional().or(z.literal("")),
   role: z.string().trim().min(1, "Select your role").max(80),
-  company_type: z.string().trim().min(1, "Select a company type").max(80),
-  claim_volume: z.string().trim().min(1, "Select your claim volume").max(80),
-  challenge: z.string().trim().min(20, "Tell us a little more (20+ characters)").max(2000),
+  company_type: z.string().trim().min(1, "Select a company type").max(120),
+  claim_volume: z.string().trim().min(1, "Select your claim volume").max(40),
+  challenge: z.string().trim().min(20, "Tell us a little more (20+ characters)").max(1800),
   consent: z.literal(true, { errorMap: () => ({ message: "Consent is required" }) }),
   source_article: z.string().max(120).optional(),
 });
@@ -19,10 +19,33 @@ export const applicationSchema = z.object({
 export const submitApplication = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => applicationSchema.parse(d))
   .handler(async ({ data }) => {
+    // The blog uses Atlas Universal as the system of record. Keep the service-role
+    // credential server-side and write only through the validated public RPC;
+    // never insert directly into pilot_applications or return applicant PII.
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("pilot_applications").insert({ ...data, website: data.website || null, source_article: data.source_article ?? null });
-    if (error) throw new Error("Could not save application");
-    return { ok: true };
+    const comments = [
+      data.challenge.trim(),
+      data.source_article ? `Source article: ${data.source_article}` : null,
+      "Application submitted from Atlas Intelligence blog.",
+    ].filter(Boolean).join("\n\n");
+
+    const { data: result, error } = await supabaseAdmin.rpc("pilot_interest_submit", {
+      p_full_name: data.full_name,
+      p_email: data.email,
+      p_company_name: data.company,
+      p_role: data.role,
+      p_website: data.website || null,
+      p_company_size: data.claim_volume,
+      p_interest_area: data.company_type,
+      p_comments: comments,
+    });
+    if (error) {
+      // Preserve the server's validation/throttle message for logs, but avoid
+      // leaking database details to the browser.
+      console.error("[pilot application] Atlas RPC rejected submission", error.message);
+      throw new Error("Could not submit application. Please review your details or try again later.");
+    }
+    return { ok: true, receivedAt: result?.receivedAt ?? null };
   });
 
 async function assertAdmin(supabase: any, userId: string) {
