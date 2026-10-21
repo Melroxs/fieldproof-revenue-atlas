@@ -5,4 +5,5 @@
 - [ ] Pilot application form + admin review + 30-day gates dashboard
 - [ ] Consistent editorial image style across all articles
 - [ ] "How Atlas works" product page + soft reader path from each article to Atlas
+- [ ] Keep scope to the four-article pilot; flag Atlas capability claims needing verification
 - [ ] Companion video file for Article 1 (blocked: workspace out of video credits; player runs a built-in chapter explainer meanwhile)
