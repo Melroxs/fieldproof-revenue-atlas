@@ -1,9 +1,9 @@
 # Roadmap
 - [x] Branding, assets, database (applications, analytics, admin role)
-- [x] Four pilot articles content + downloadable resources
-- [ ] Homepage, article pages, resource print pages, video player (Article 1)
-- [ ] Pilot application form + admin review + 30-day gates dashboard
-- [ ] Consistent editorial image style across all articles
-- [ ] "How Atlas works" product page + soft reader path from each article to Atlas
-- [ ] Keep scope to the four-article pilot; flag Atlas capability claims needing verification
-- [ ] Companion video file for Article 1 (blocked: workspace out of video credits; player runs a built-in chapter explainer meanwhile)
+- [x] Four pilot articles + downloadable resources
+- [x] Homepage, article pages, printable resources, Article 1 video player
+- [x] Pilot application form + admin review + 30-day gates dashboard
+- [x] Consistent editorial image style
+- [x] "How Atlas works" page + "Where Atlas fits" note in each article
+- [x] Scope kept to four-article pilot; claims flagged for verification
+- [ ] Filmed companion video for Article 1 (blocked: workspace out of video credits)
