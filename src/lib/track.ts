@@ -7,7 +7,7 @@ function sid() {
   } catch { return "anon-session"; }
 }
 
-export function track(event: string, data: { article?: string | null; value?: number; meta?: Record<string, string | number> } = {}) {
+export function track(event: string, data: { article?: string | null | undefined; value?: number | undefined; meta?: Record<string, string | number> | undefined } = {}) {
   if (typeof window === "undefined") return;
   if (navigator.doNotTrack === "1") return;
   const payload = JSON.stringify({ session_id: sid(), event, article: data.article ?? null, value: data.value ?? null, meta: data.meta });

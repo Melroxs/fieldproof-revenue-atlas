@@ -151,7 +151,7 @@ function BlockView({ b, a }: { b: Block; a: Article }) {
         </div>
       );
     case "cta": {
-      const p = pathways[a.n];
+      const p = pathways[a.n]!;
       return (
         <div className="not-prose my-12 rounded-xl border border-border bg-card p-6 md:p-8">
           <p className="font-mono text-xs uppercase tracking-widest text-violet">Where Atlas fits</p>

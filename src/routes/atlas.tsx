@@ -45,7 +45,7 @@ function AtlasPage() {
               <p className="font-mono text-xs text-cyan">{s.n}</p>
               <p className="mt-2 font-display text-lg font-semibold">{s.t}</p>
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              <Link to="/articles/$slug" params={{ slug: articles[s.a].slug }} className="mt-4 inline-block text-sm text-primary">Read the guide →</Link>
+              <Link to="/articles/$slug" params={{ slug: articles[s.a]!.slug }} className="mt-4 inline-block text-sm text-primary">Read the guide →</Link>
             </div>
           ))}
         </div>

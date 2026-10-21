@@ -39,7 +39,7 @@ export function VideoPlayer({ article }: { article: string }) {
     setPlaying((p) => !p);
   };
   const idx = Math.min(chapters.length - 1, Math.floor(t / CH));
-  const c = chapters[idx];
+  const c = chapters[idx]!;
 
   if (VIDEO_SRC) {
     return (
